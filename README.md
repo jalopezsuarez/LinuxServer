@@ -408,10 +408,10 @@ cd /server/sources/php-7.2.7
 --with-xmlrpc \
 \
 --enable-bcmath \
+--with-libxml-dir \
 --enable-zip \
 --with-zlib \
---with-libzip \
---with-libxml-dir 
+--with-libzip 
 ```
 
 ```
