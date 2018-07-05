@@ -411,7 +411,7 @@ cd /server/sources/php-7.2.7
 ```
 
 ```
-make install -j4
+make install
 cp php.ini-production /server/php/etc/php.ini
 ```
 
