@@ -395,7 +395,7 @@ cd /server/sources/php-7.2.7
 --with-jpeg-dir \
 --with-png-dir \
 --with-xpm-dir \
---with-webp-dir
+--with-webp-dir \
 \
 --with-bz2 \
 --with-curl \
