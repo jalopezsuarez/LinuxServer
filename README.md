@@ -18,7 +18,7 @@ apt-get install -y libapr1 libapr1-dev libaprutil1 libaprutil1-dev libpcre3-dev
 ```
 ##### PHP Packes
 ```
-apt-get install -y libpng-dev libjpeg-dev libbz2-dev libcurl4-gnutls-dev libxml2 libxml2-dev libzip-dev libmcrypt-dev
+apt-get install -y libpng-dev libjpeg-dev libbz2-dev libcurl4-gnutls-dev libxml2 libxml2-dev libzip-dev libmcrypt-dev libfreetype6-dev libxpm-dev libwebp-dev
 ```
 
 #### Server Folders
