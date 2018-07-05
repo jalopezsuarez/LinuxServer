@@ -407,6 +407,7 @@ cd /server/sources/php-7.2.7
 --with-libxml-dir \
 \
 --with-freetype-dir \
+--enable-gd-native-ttf \
 --with-jpeg-dir \
 --with-png-dir \
 --with-xpm-dir \
