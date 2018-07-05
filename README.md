@@ -379,35 +379,38 @@ cd /server/sources/php-7.2.7
 ```
 
 ```
-./configure 
-
---prefix=/server/php 
---with-config-file-path=/server/php/etc 
---with-apxs2=/server/apache/bin/apxs 
---with-libdir=lib/x86_64-linux-gnu 
-
---enable-pdo=shared 
---with-pdo_mysql=shared 
---without-pdo-sqlite
-
---with-bz2 
---with-curl 
---enable-fileinfo 
---with-gd 
---with-gettext 
---enable-mbstring 
---with-openssl 
---enable-soap 
---enable-sockets 
---with-xmlrpc 
-
---with-libxml-dir 
---with-zlib 
---enable-bcmath 
---with-jpeg-dir 
---with-png-dir 
---enable-zip 
---with-libzip
+./configure \
+--prefix=/server/php \
+--with-config-file-path=/server/php/etc \
+--with-libdir=lib/x86_64-linux-gnu \
+--with-apxs2=/server/apache/bin/apxs \
+\
+--enable-pdo=shared \
+--with-pdo_mysql=shared \
+--without-pdo-sqlite \
+\
+--with-bz2 \
+--with-curl \
+--enable-fileinfo \
+--with-gd \
+--with-gettext \
+--enable-mbstring \
+--with-openssl \
+--enable-soap \
+--enable-sockets \
+--with-xmlrpc \
+\
+--enable-bcmath \
+--enable-zip \
+--with-zlib \
+--with-libzip \
+--with-libxml-dir \
+\
+--with-freetype-dir \
+--with-jpeg-dir \
+--with-png-dir \
+--with-xpm-dir \
+--with-webp-dir
 ```
 
 ```
