@@ -390,10 +390,16 @@ cd /server/sources/php-7.2.7
 --without-pdo-sqlite \
 --without-sqlite3 \
 \
+--with-gd=shared \
+--with-freetype-dir \
+--with-jpeg-dir \
+--with-png-dir \
+--with-xpm-dir \
+--with-webp-dir
+\
 --with-bz2 \
 --with-curl \
 --enable-fileinfo \
---with-gd=shared \
 --with-gettext \
 --enable-mbstring \
 --with-openssl \
@@ -405,13 +411,7 @@ cd /server/sources/php-7.2.7
 --enable-zip \
 --with-zlib \
 --with-libzip \
---with-libxml-dir \
-\
---with-freetype-dir \
---with-jpeg-dir \
---with-png-dir \
---with-xpm-dir \
---with-webp-dir
+--with-libxml-dir 
 ```
 
 ```
