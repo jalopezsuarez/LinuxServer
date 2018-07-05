@@ -387,8 +387,8 @@ cd /server/sources/php-7.2.7
 --with-libdir=lib/x86_64-linux-gnu 
 
 --enable-pdo=shared 
---with-pdo_sqlite=shared 
 --with-pdo_mysql=shared 
+--without-pdo-sqlite
 
 --with-bz2 
 --with-curl 
