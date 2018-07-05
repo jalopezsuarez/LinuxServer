@@ -346,7 +346,7 @@ chmod +x /etc/init.d/apache
 `vi /etc/init.d/apache`
 ```
 # Comments to support LSB init script conventions
-#### BEGIN INIT INFO
+### BEGIN INIT INFO
 # Provides: apache
 # Required-Start: $local_fs $network $remote_fs $syslog
 # Required-Stop: $local_fs $network $remote_fs $syslog
@@ -354,7 +354,7 @@ chmod +x /etc/init.d/apache
 # Default-Stop: 0 1 6
 # Short-Description: start and stop Apache
 # Description: Apache is a open source HTTP web server.
-#### END INIT INFO
+### END INIT INFO
 ```
 
 ```
