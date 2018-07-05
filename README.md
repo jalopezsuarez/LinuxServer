@@ -415,7 +415,7 @@ make install
 cp php.ini-production /server/php/etc/php.ini
 ```
 
-`vi /etc/php/etc/php.ini`
+`vi /server/php/etc/php.ini`
 ```
 memory_limit = 512M
 post_max_size = 512M
