@@ -392,7 +392,7 @@ cd /server/sources/php-7.2.7
 --with-bz2 \
 --with-curl \
 --enable-fileinfo \
---with-gd \
+--with-gd=shared \
 --with-gettext \
 --enable-mbstring \
 --with-openssl \
