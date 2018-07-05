@@ -426,6 +426,11 @@ post_max_size = 512M
 upload_max_filesize = 512M
 max_file_uploads = 512
 date.timezone = "Europe/Madrid"
+
+extension=gd.so
+extension=pdo.so
+extension=pdo_mysql.so
+extension=mcrypt.so
 ```
 
 #### PHP Extensions Shared
