@@ -3,7 +3,7 @@ Debian 9 Server:
 * Minimal Distribution
 * SSH Server
 
-### System Server
+### Dependencies
 
 ##### Build Deps
 ```
