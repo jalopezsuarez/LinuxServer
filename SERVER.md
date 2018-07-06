@@ -1,5 +1,4 @@
-
-### Server Template
+## Linux Debian 9 (minimal server)
 Debian 9 Server:
 * Minimal Distribution
 * SSH Server
