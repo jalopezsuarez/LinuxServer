@@ -471,3 +471,57 @@ PHPIniDir "/server/php/etc/php.ini"
 <?php phpinfo(); ?>
 ```
 
+### Gearman Service
+```
+unzip gearman_server.zip
+gearman-server-0.8.9-20141210.162656.jar
+gearman-server-0.8.11-20150731.182506.jar
+```
+
+#### System Service
+`/etc/system/systemd/gearman.service`
+```
+[Unit]
+Description=Gearman Service
+
+[Service]
+ExecStart=/server/java/jdk8/bin/java -jar /server/gearman/gearman-server-0.8.11-20150731.182506.jar
+WorkingDirectory=/server/gearman/
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
+```
+systemctl enable gearman.service
+systemctl daemon-reload
+systemctl start gearman.service
+```
+
+### Assembly Service
+```
+unzip assembly_service.zip
+assembly-service.jar
+```
+
+#### System Service
+`/etc/system/systemd/assembly.service`
+```
+[Unit]
+Description=Assembly Service
+
+[Service]
+ExecStart=/server/java/jdk8/bin/java -jar /server/assembly/assembly-service.jar
+WorkingDirectory=/server/assembly/
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
+```
+systemctl enable assembly.service
+systemctl daemon-reload
+systemctl start assembly.service
+```
