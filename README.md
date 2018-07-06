@@ -211,7 +211,6 @@ chmod +x /etc/init.d/mysql
 ```
 
 ```
-/etc/init.d/mysql start
 systemctl start mysql.service
 systemctl status mysql.service
 ```
@@ -363,7 +362,6 @@ chmod +x /etc/init.d/apache
 ```
 
 ```
-/etc/init.d/apache start
 systemctl start apache.service
 systemctl status apache.service
 ```
