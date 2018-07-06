@@ -250,3 +250,26 @@ apidox_net_intermediate.cer
 # /MultiHost
 # ========================================================
 ```
+
+### Gearman
+
+#### Gearman Service
+`/etc/system/systemd/gearman.service`
+```
+[Unit]
+Description=Gearman Service
+
+[Service]
+ExecStart=/server/java/jdk8/bin/java -jar /server/gearman/gearman-server-0.8.11-20150731.182506.jar
+WorkingDirectory=/server/gearman/
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
+```
+systemctl enable gearman.service
+systemctl daemon-reload
+systemctl start gearman.service
+```
