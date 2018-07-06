@@ -4,13 +4,13 @@ Debian 9 Server:
 * Minimal Distribution
 * SSH Server
 
-### Server Files
+### Server Package
 ```
 tar zxvf server.tgz
 mv server /server
 ```
 
-### System Dependencies
+### Dependencies
 
 #### Build Deps
 ```
@@ -77,28 +77,27 @@ update-rc.d apache remove
 ```
 ### Security
 
-#### Linux Distribution (Version / Release)
+#### Linux (Version / Release)
 ```
 hostnamectl
 ```
 
-#### Generate KeyPair SSH Access
+#### SSH Certificate
 ```
 ssh-keygen -t rsa -b 4096 -C "jalopezsuarez@gmail.com"
 secure_rsa_jalopezsuarez_private.key
 secure_rsa_jalopezsuarez_server.pub
 ```
 
-#### SSH Username / Password Disable (only certificate)
+#### SSH Username / Password (only certificate)
 Generate random password (https://passwordsgenerator.net):
 ```
 passwd
 ```
-Disable password in SSH Service:
+SSH Server disable password:
 ```
 cat /etc/ssh/sshd_config | grep PasswordAuthentication
 ```
-
 `vi /etc/ssh/sshd_config`
 ```
 PasswordAuthentication no
@@ -116,7 +115,7 @@ cat secure_rsa_jalopezsuarez_server.pub >> ~/.ssh/authorized_keys
 
 ### MySQL
 
-#### MySQL System
+#### MySQL Server
 ```
 groupadd mysql
 useradd -r -g mysql -s /bin/false mysql
@@ -218,7 +217,7 @@ systemctl start apache.service
 systemctl status apache.service
 ```
 
-#### Apache SSL
+#### Apache SSL (https/443)
 ```
 mkdir /server/apache/conf/ssl
 apidox_net_private.key
