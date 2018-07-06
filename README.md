@@ -473,7 +473,8 @@ PHPIniDir "/server/php/etc/php.ini"
 
 ### Gearman Service
 ```
-unzip gearman_server.zip
+mkdir /server/gearman
+unzip /server/repos/gearman_server.zip
 gearman-server-0.8.9-20141210.162656.jar
 gearman-server-0.8.11-20150731.182506.jar
 ```
@@ -501,7 +502,8 @@ systemctl start gearman.service
 
 ### Assembly Service
 ```
-unzip assembly_service.zip
+mkdir /server/assembly
+unzip /server/repos/assembly_service.zip
 assembly-service.jar
 ```
 
