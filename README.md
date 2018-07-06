@@ -481,7 +481,7 @@ PHPIniDir "/server/php/etc/php.ini"
 ### Gearman
 ```
 mkdir /server/gearman
-unzip /server/repos/gearman_server.zip
+unzip /server/repos/gearman-servers.zip
 gearman-server-0.8.9-20141210.162656.jar
 gearman-server-0.8.11-20150731.182506.jar
 ```
