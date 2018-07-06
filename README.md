@@ -3,50 +3,46 @@ Debian 9 Server:
 * Minimal Distribution
 * SSH Server
 
-### Dependencies
-
-##### Build Deps
-```
-apt-get update
-apt-get install -y build-essential
-apt-get install -y autoconf make automake cmake libtool subversion git mercurial checkinstall bison flex unzip
-```
-##### MySQL Deps
-```
-apt-get install -y libncurses-dev libssl-dev
-```
-##### Apache Deps
-```
-apt-get install -y libapr1 libapr1-dev libaprutil1 libaprutil1-dev libpcre3-dev
-```
-##### PHP Deps
-```
-apt-get install -y libpng-dev libjpeg-dev libbz2-dev libcurl4-gnutls-dev libxml2 libxml2-dev libzip-dev libmcrypt-dev libfreetype6-dev libxpm-dev libwebp-dev
-```
-
-#### Server Folders
-
+### Server Folders
 ```
 mkdir /server
 mkdir /server/repos
 mkdir /server/sources
 ```
 
-#### Localization
+### Dependencies
 
+#### Build Deps
+```
+apt-get update
+apt-get install -y build-essential
+apt-get install -y autoconf make automake cmake libtool subversion git mercurial checkinstall bison flex unzip
+```
+#### MySQL Deps
+```
+apt-get install -y libncurses-dev libssl-dev
+```
+#### Apache Deps
+```
+apt-get install -y libapr1 libapr1-dev libaprutil1 libaprutil1-dev libpcre3-dev
+```
+#### PHP Deps
+```
+apt-get install -y libpng-dev libjpeg-dev libbz2-dev libcurl4-gnutls-dev libxml2 libxml2-dev libzip-dev libmcrypt-dev libfreetype6-dev libxpm-dev libwebp-dev
+```
+
+#### Localization
 ```
 locale-gen en_US.UTF-8
 ```
 
 #### VIM Editor (FIX)
-
 ```
 echo "set nocompatible" > ~/.vimrc
 echo "set backspace=indent,eol,start" >> ~/.vimrc
 ```
 
 #### CURL Libraries (FIX)
-
 ```
 cd /usr/include
 ln -s x86_64-linux-gnu/curl
@@ -132,7 +128,6 @@ mv jdk1.8.0_172 /server/java/jdk8
 ### MySQL
 
 #### MySQL Server
-
 ```
 https://downloads.mysql.com/archives/community/
 https://dev.mysql.com/doc/mysql-sourcebuild-excerpt/5.7/en/installing-source-distribution.html
@@ -155,7 +150,6 @@ make install
 ```
 
 #### MySQL Initialize
-
 `vi /server/mysql/my.cnf`
 ```
 # The MySQL database server configuration file.
