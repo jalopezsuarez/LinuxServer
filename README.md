@@ -1,22 +1,22 @@
 ## Linux Debian 9 (minimal server)
 
-### COMMONS
+### System Server
 
-##### Build Packets
+##### Build Deps
 ```
 apt-get update
 apt-get install -y build-essential
 apt-get install -y autoconf make automake cmake libtool subversion git mercurial checkinstall bison flex unzip
 ```
-##### MySQL Packets
+##### MySQL Deps
 ```
 apt-get install -y libncurses-dev libssl-dev
 ```
-##### Apache Packets
+##### Apache Deps
 ```
 apt-get install -y libapr1 libapr1-dev libaprutil1 libaprutil1-dev libpcre3-dev
 ```
-##### PHP Packes
+##### PHP Deps
 ```
 apt-get install -y libpng-dev libjpeg-dev libbz2-dev libcurl4-gnutls-dev libxml2 libxml2-dev libzip-dev libmcrypt-dev libfreetype6-dev libxpm-dev libwebp-dev
 ```
@@ -29,32 +29,27 @@ mkdir /server/repos
 mkdir /server/sources
 ```
 
-#### Localization Configuration
+#### Localization
 
 ```
 locale-gen en_US.UTF-8
 ```
 
-#### Vim Editor (Fix)
+#### VIM Editor (FIX)
 
 ```
 echo "set nocompatible" > ~/.vimrc
 echo "set backspace=indent,eol,start" >> ~/.vimrc
 ```
 
-#### CURL Libraries (Fix)
+#### CURL Libraries (FIX)
 
 ```
 cd /usr/include
 ln -s x86_64-linux-gnu/curl
 ```
 
-#### Environment Parameters
-
-```
-set
-```
-
+#### Environment
 `vi /etc/environment`
 ```
 LANGUAGE=en_US.UTF-8
@@ -70,8 +65,7 @@ PHP_HOME=/server/php
 export PATH=$PATH:$JAVA_HOME/bin:$PHP_HOME/bin
 ```
 
-#### Services Installation
-
+#### Services
 ```
 update-rc.d mysql defaults 70 30
 update-rc.d apache defaults 80 20
@@ -86,39 +80,45 @@ ls -l /etc/rc*.d/ | grep apache*
 update-rc.d apache remove
 ```
 
-### SECURITY
+### Security
 
-#### Debian Version CommandLine
-
+#### Linux (Version / Release)
 ```
 hostnamectl
 ```
-#### Generate KeyPair SSH Access
 
+#### SSH Certificate
 ```
 ssh-keygen -t rsa -b 4096 -C "jalopezsuarez@gmail.com"
 secure_rsa_jalopezsuarez_private.key
 secure_rsa_jalopezsuarez_server.pub
 ```
 
-#### Disable User/Password access method
-
-```
-cat /etc/ssh/sshd_config | grep PasswordAuthentication
-vi /etc/ssh/sshd_config
-PasswordAuthentication no
-```
-
-#### Generate/change random 32/64 password 
-```
-https://passwordsgenerator.net
-```
+#### SSH Username / Password (only certificate)
+Generate random password (https://passwordsgenerator.net):
 ```
 passwd
 ```
+SSH Server disable password:
+```
+cat /etc/ssh/sshd_config | grep PasswordAuthentication
+```
+`vi /etc/ssh/sshd_config`
+```
+PasswordAuthentication no
+```
 
-### JAVA
+#### SSH Certificates
+Private Key (client side):
+```
+secure_rsa_jalopezsuarez_private.key
+```
+Public Key (server side):
+```
+cat secure_rsa_jalopezsuarez_server.pub >> ~/.ssh/authorized_keys
+```
 
+### Java
 ```
 cd /server/repos
 tar zxvf jdk-8u172-linux-x64.tar.gz
@@ -126,9 +126,9 @@ mkdir /server/java
 mv jdk1.8.0_172 /server/java/jdk8
 ```
 
-### MYSQL
+### MySQL
 
-#### MySQL Community Server (Referencias)
+#### MySQL Server
 
 ```
 https://downloads.mysql.com/archives/community/
@@ -151,7 +151,7 @@ cmake -DWITH_BOOST=./boost/ -DCMAKE_INSTALL_PREFIX=/server/mysql .
 make install
 ```
 
-#### MySQL Initializate BBDD (no-root)
+#### MySQL Initialize
 
 `vi /server/mysql/my.cnf`
 ```
@@ -213,7 +213,7 @@ systemctl start mysql.service
 systemctl status mysql.service
 ```
 
-#### MySQL Configuration
+#### MySQL Status
 ```
 cd /server/mysql
 bin/mysqladmin variables -p
@@ -224,7 +224,7 @@ bin/mysqladmin --help
 bin/mysqld --help --verbose | grep my.cnf
 ```
 
-#### MySQL Reference Configuration Statements
+#### MySQL References
 ```
 Create a user to access externally, so you dont need to use root for security:
 CREATE USER 'MYUSER'@'%.%.%.%' IDENTIFIED BY 'MYPASSWORD'; 
@@ -254,7 +254,9 @@ GRANT SELECT ON *.* TO 'general'@'localhost' IDENTIFIED BY 'my_password';
 GRANT SELECT ON *.* TO 'general'@'192.168.%.%' IDENTIFIED BY 'my_password';
 ```
 
-### APACHE
+### Apache
+
+#### Apache Server
 ```
 cd /server/repos
 tar zxvf httpd-2.4.33.tar.gz 
@@ -324,7 +326,7 @@ ServerName 0.0.0.0:80
 # ========================================================
 ```
 
-#### Apache Server HTML
+#### Apache HTML
 `vi /server/apache/htdocs/index.html`
 ```
 <!DOCTYPE html>
@@ -363,7 +365,7 @@ systemctl start apache.service
 systemctl status apache.service
 ```
 
-#### Configurar SSL https (443)
+#### Apache SSL (https/443)
 ```
 mkdir /server/apache/conf/ssl
 apidox_net_private.key
@@ -372,6 +374,8 @@ apidox_net_intermediate.cer
 ```
 
 ### PHP
+
+#### PHP Server
 ```
 tar zxvf /server/repos/php-7.2.7.tar.gz
 mv /server/repos/php-7.2.7 /server/sources
@@ -433,7 +437,7 @@ extension=pdo_mysql.so
 extension=mcrypt.so
 ```
 
-#### PHP Extensions Shared
+#### PHP Extensions
 ```
 cd /server/php/bin
 ```
@@ -448,7 +452,7 @@ pecl install mcrypt-1.0.1
 extension=mcrypt.so
 ```
 
-### APACHE / PHP
+### Apache / PHP
 `vi /server/apache/conf/httpd.conf`
 ```
 LoadModule php7_module modules/libphp7.so
@@ -465,13 +469,13 @@ PHPIniDir "/server/php/etc/php.ini"
 # ========================================================
 ```
 
-#### Apache Server PHP Testing
+#### Apache / PHP Configuration
 `vi /server/apache/htdocs/phpinfo.php`
 ```
 <?php phpinfo(); ?>
 ```
 
-### Gearman Service
+### Gearman
 ```
 mkdir /server/gearman
 unzip /server/repos/gearman_server.zip
@@ -479,7 +483,7 @@ gearman-server-0.8.9-20141210.162656.jar
 gearman-server-0.8.11-20150731.182506.jar
 ```
 
-#### System Service
+#### Gearman Service
 `/etc/system/systemd/gearman.service`
 ```
 [Unit]
@@ -500,14 +504,14 @@ systemctl daemon-reload
 systemctl start gearman.service
 ```
 
-### Assembly Service
+### Assembly
 ```
 mkdir /server/assembly
 unzip /server/repos/assembly_service.zip
 assembly-service.jar
 ```
 
-#### System Service
+#### Assembly Service
 `/etc/system/systemd/assembly.service`
 ```
 [Unit]
