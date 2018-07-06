@@ -1,4 +1,9 @@
 
+### Server Template
+Debian 9 Server:
+* Minimal Distribution
+* SSH Server
+
 ### Server Files
 ```
 tar zxvf server.tgz
