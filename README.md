@@ -426,6 +426,8 @@ cp php.ini-production /server/php/etc/php.ini
 
 `vi /server/php/etc/php.ini`
 ```
+max_execution_time = 300
+max_input_time = 600
 memory_limit = 512M
 post_max_size = 512M
 upload_max_filesize = 512M
