@@ -114,14 +114,14 @@ mv jdk1.8.0_172 /server/java/jdk8
 
 #### MySQL Server
 ```
-groupadd mysql
-useradd -r -g mysql -s /bin/false mysql
-```
-
-```
 rm -rf /server/mysql/data
 mkdir /server/mysql/data
 chmod 750 /server/mysql/data
+```
+
+```
+groupadd mysql
+useradd -r -g mysql -s /bin/false mysql
 ```
 
 ```
