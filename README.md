@@ -122,14 +122,17 @@ https://dev.mysql.com/doc/mysql-sourcebuild-excerpt/5.7/en/installing-source-dis
 cd /server/repos
 tar zxvf mysql-boost-5.7.21.tar.gz
 mv mysql-5.7.21 /server/sources
-
+```
+```
 mkdir /server/mysql
 mkdir /server/mysql/data
 chmod 750 /server/mysql/data
-
+```
+```
 groupadd mysql
 useradd -r -g mysql -s /bin/false mysql
-
+```
+```
 cmake -DWITH_BOOST=./boost/ -DCMAKE_INSTALL_PREFIX=/server/mysql .
 make install
 ```
