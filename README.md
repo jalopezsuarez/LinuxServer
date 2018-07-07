@@ -481,7 +481,7 @@ gearman-server-0.8.11-20150731.182506.jar
 ```
 
 #### Gearman Service
-`/etc/system/systemd/gearman.service`
+`vi /etc/systemd/system/gearman.service`
 ```
 [Unit]
 Description=Gearman Service
@@ -509,7 +509,7 @@ assembly-service.jar
 ```
 
 #### Assembly Service
-`/etc/system/systemd/assembly.service`
+`vi /etc/systemd/system/assembly.service`
 ```
 [Unit]
 Description=Assembly Service
