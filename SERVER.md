@@ -254,7 +254,7 @@ apidox_net_intermediate.cer
 ### Gearman
 
 #### Gearman Service
-`/etc/system/systemd/gearman.service`
+`vi /etc/systemd/system/gearman.service`
 ```
 [Unit]
 Description=Gearman Service
