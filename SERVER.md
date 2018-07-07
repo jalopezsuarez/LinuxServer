@@ -102,6 +102,14 @@ Public Key (server side):
 cat secure_rsa_jalopezsuarez_server.pub >> ~/.ssh/authorized_keys
 ```
 
+### Java
+```
+cd /server/repos
+tar zxvf jdk-8u172-linux-x64.tar.gz
+mkdir /server/java
+mv jdk1.8.0_172 /server/java/jdk8
+```
+
 ### MySQL
 
 #### MySQL Server
