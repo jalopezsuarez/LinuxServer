@@ -207,21 +207,23 @@ bin/mysqld --help --verbose | grep my.cnf
 
 #### MySQL References
 ```
-Create a user to access externally, so you dont need to use root for security:
-CREATE USER 'MYUSER'@'%.%.%.%' IDENTIFIED BY 'MYPASSWORD'; 
-GRANT ALL PRIVILEGES ON *.* TO 'MYUSER'@'%.%.%.%' IDENTIFIED BY 'MYPASSWORD';
+Create a custom user to access externally:
+CREATE USER 'server'@'%.%.%.%' IDENTIFIED BY 'MYPASSWORD'; 
+GRANT ALL PRIVILEGES ON *.* TO 'server'@'%.%.%.%' IDENTIFIED BY 'MYPASSWORD';
 FLUSH PRIVILEGES;
 
-Change user root administrator password:
+Change user root password (1):
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'MYPASSWORD';
+FLUSH PRIVILEGES;
+
+Change user root password (2):
 UPDATE user SET Password=PASSWORD('MYPASSWORD') WHERE User='root';
 FLUSH PRIVILEGES;
 
-Add permissions to root administrator user to access from outside:
+Add permissions to root to access from outside:
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.0.%' IDENTIFIED BY 'MYPASSWORD';
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'127.0.0.1' IDENTIFIED BY 'MYPASSWORD';
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'MYPASSWORD';
-
-SELECT CURRENT_USER();
 
 SET PASSWORD FOR 'root'@'localhost' = PASSWORD('MYPASSWORD');
 CREATE USER 'root'@'192.168.%.%' IDENTIFIED BY 'MYPASSWORD'; 
@@ -231,8 +233,8 @@ CREATE USER 'MYUSER'@'localhost' IDENTIFIED BY 'MYPASSWORD';
 CREATE USER 'MYUSER'@'192.168.%.%' IDENTIFIED BY 'MYPASSWORD'; 
 GRANT ALL PRIVILEGES ON *.* TO 'general'@'192.168.%.%' IDENTIFIED BY 'MYPASSWORD';
 
-GRANT SELECT ON *.* TO 'MYUSER'@'localhost' IDENTIFIED BY 'my_password';
-GRANT SELECT ON *.* TO 'MYUSER'@'192.168.%.%' IDENTIFIED BY 'my_password';
+GRANT SELECT ON *.* TO 'MYUSER'@'localhost' IDENTIFIED BY 'MYPASSWORD';
+GRANT SELECT ON *.* TO 'MYUSER'@'192.168.%.%' IDENTIFIED BY 'MYPASSWORD';
 ```
 
 ### Apache
