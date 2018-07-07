@@ -64,21 +64,6 @@ PHP_HOME=/server/php
 export PATH=$PATH:$JAVA_HOME/bin:$PHP_HOME/bin
 ```
 
-#### Services
-```
-update-rc.d mysql defaults 70 30
-update-rc.d apache defaults 80 20
-```
-
-```
-ls -l /etc/rc*.d/ | grep mysql*
-update-rc.d mysql remove
-```
-```
-ls -l /etc/rc*.d/ | grep apache*
-update-rc.d apache remove
-```
-
 ### Security
 
 #### Linux (Version / Release)
@@ -527,4 +512,19 @@ WantedBy=multi-user.target
 systemctl enable assembly.service
 systemctl daemon-reload
 systemctl start assembly.service
+```
+
+### Services
+```
+update-rc.d mysql defaults 70 30
+update-rc.d apache defaults 80 20
+```
+
+```
+ls -l /etc/rc*.d/ | grep mysql*
+update-rc.d mysql remove
+```
+```
+ls -l /etc/rc*.d/ | grep apache*
+update-rc.d apache remove
 ```
