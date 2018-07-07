@@ -61,6 +61,7 @@ PHP_HOME=/server/php
 
 `vi /etc/bash.bashrc`
 ```
+# permanently update global paths for all users
 export PATH=$PATH:$JAVA_HOME/bin:$PHP_HOME/bin
 ```
 
