@@ -167,6 +167,7 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY 'MYPASSWORD';
 FLUSH PRIVILEGES;
 
 Change user root password (2):
+SELECT CURRENT_USER();
 UPDATE user SET Password=PASSWORD('MYPASSWORD') WHERE User='root';
 FLUSH PRIVILEGES;
 
