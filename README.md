@@ -223,16 +223,16 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'MYPASSWORD';
 
 SELECT CURRENT_USER();
 
-SET PASSWORD FOR 'root'@'localhost' = PASSWORD('my_password');
-CREATE USER 'root'@'192.168.%.%' IDENTIFIED BY 'my_password'; 
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.%.%' IDENTIFIED BY 'my_password';
+SET PASSWORD FOR 'root'@'localhost' = PASSWORD('MYPASSWORD');
+CREATE USER 'root'@'192.168.%.%' IDENTIFIED BY 'MYPASSWORD'; 
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.%.%' IDENTIFIED BY 'MYPASSWORD';
 
-CREATE USER 'general'@'localhost' IDENTIFIED BY 'my_password'; 
-CREATE USER 'general'@'192.168.%.%' IDENTIFIED BY 'my_password'; 
-GRANT ALL PRIVILEGES ON *.* TO 'general'@'192.168.%.%' IDENTIFIED BY 'my_password';
+CREATE USER 'MYUSER'@'localhost' IDENTIFIED BY 'MYPASSWORD'; 
+CREATE USER 'MYUSER'@'192.168.%.%' IDENTIFIED BY 'MYPASSWORD'; 
+GRANT ALL PRIVILEGES ON *.* TO 'general'@'192.168.%.%' IDENTIFIED BY 'MYPASSWORD';
 
-GRANT SELECT ON *.* TO 'general'@'localhost' IDENTIFIED BY 'my_password';
-GRANT SELECT ON *.* TO 'general'@'192.168.%.%' IDENTIFIED BY 'my_password';
+GRANT SELECT ON *.* TO 'MYUSER'@'localhost' IDENTIFIED BY 'my_password';
+GRANT SELECT ON *.* TO 'MYUSER'@'192.168.%.%' IDENTIFIED BY 'my_password';
 ```
 
 ### Apache
