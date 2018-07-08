@@ -528,6 +528,7 @@ update-rc.d apache remove
 apt-get install iptables-persistent
 ```
 
+IPTables Firewall basic configuration:
 ```
 iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 iptables -A INPUT -p tcp --dport 80 -j ACCEPT
@@ -541,15 +542,22 @@ iptables -P INPUT DROP
 ip6tables -P INPUT DROP
 ```
 
+Persistent IPTables (v4/v6):
 ```
 iptables-save > /etc/iptables/rules.v4
 ip6tables-save > /etc/iptables/rules.v6
 ```
 
+IPTables (v4/v6) status:
 ```
 iptables -L -v -n
 iptables -L
-
 ip6tables -L -v -n
 ip6tables -L
+```
+
+Open a port to one or more specific IP address (create / delete rule):
+```
+iptables -A INPUT -p tcp --dport 3306 -s 188.78.107.149 -j ACCEPT
+iptables -D INPUT -p tcp --dport 3306 -s 188.78.107.149 -j ACCEPT
 ```
