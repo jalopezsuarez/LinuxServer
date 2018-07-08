@@ -33,6 +33,9 @@ apt-get install -y libpng-dev libjpeg-dev libbz2-dev libcurl4-gnutls-dev libxml2
 
 #### Localization
 ```
+dpkg-reconfigure locales
+```
+```
 locale-gen en_US.UTF-8
 ```
 
