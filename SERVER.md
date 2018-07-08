@@ -219,14 +219,23 @@ apidox_net_intermediate.cer
 `vi /server/apache/conf/httpd.conf`
 ```
 # ========================================================
-# /MultiHost
+# MultiHost
 # ========================================================
+<VirtualHost *:80>
+    DocumentRoot /server/apache/htdocs
+    ServerAdmin webmaster@localhost
+    DirectoryIndex index.php index.phtml index.phps index.html index.htm
+</VirtualHost>
 <VirtualHost *:80>
     DocumentRoot /server/apache/htdocs/apidox_net
     ServerName apidox.net
     ServerAlias www.apidox.net
     ServerAdmin webmaster@localhost
     DirectoryIndex index.php index.phtml index.phps index.html index.htm
+    RewriteEngine On
+    RewriteCond %{HTTPS} off [OR]
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}$1 [R=301,L]
 </VirtualHost>
 <VirtualHost *:443>
     DocumentRoot /server/apache/htdocs/apidox_net
