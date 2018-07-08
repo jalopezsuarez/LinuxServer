@@ -274,20 +274,15 @@ ServerName 0.0.0.0:80
     DirectoryIndex index.php index.phtml index.phps index.html index.htm
 </VirtualHost>
 <VirtualHost *:80>
-    DocumentRoot /server/apache/htdocs/agronote_com
-    ServerName agronote.com
-    ServerAlias www.agronote.com
-    ServerAlias agronote.es
-    ServerAlias www.agronote.es
-    ServerAdmin webmaster@localhost
-    DirectoryIndex index.php index.phtml index.phps index.html index.htm
-</VirtualHost>
-<VirtualHost *:80>
     DocumentRoot /server/apache/htdocs/apidox_net
     ServerName apidox.net
     ServerAlias www.apidox.net
     ServerAdmin webmaster@localhost
     DirectoryIndex index.php index.phtml index.phps index.html index.htm
+    RewriteEngine On
+    RewriteCond %{HTTPS} off [OR]
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}$1 [R=301,L]
 </VirtualHost>
 <VirtualHost *:443>
     DocumentRoot /server/apache/htdocs/apidox_net
@@ -299,13 +294,6 @@ ServerName 0.0.0.0:80
     SSLCertificateFile /server/apache/conf/ssl/apidox_net_certificate.cer
     SSLCertificateKeyFile /server/apache/conf/ssl/apidox_net_private.key
     SSLCertificateChainFile /server/apache/conf/ssl/apidox_net_intermediate.cer
-</VirtualHost>
-<VirtualHost *:80>
-    DocumentRoot /server/apache/htdocs/vemovi_com
-    ServerName vemovi.com
-    ServerAlias www.vemovi.com
-    ServerAdmin webmaster@localhost
-    DirectoryIndex index.php index.phtml index.phps index.html index.htm
 </VirtualHost>
 # ========================================================
 # /MultiHost
