@@ -527,40 +527,84 @@ update-rc.d apache remove
 
 ### Firewall (IPTABLES)
 
-```
-apt-get install iptables-persistent
-```
+#### IPTables Firewall Server Security
 
-IPTables Firewall basic configuration:
+Common rules for firewall server security:
 ```
+iptables -A INPUT -m state --state INVALID -j DROP
+iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+iptables -A INPUT -i lo -j ACCEPT
+
 iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 iptables -A INPUT -p tcp --dport 443 -j ACCEPT
 
-ip6tables -A INPUT -p tcp --dport 22 -j ACCEPT
-ip6tables -A INPUT -p tcp --dport 80 -j ACCEPT
-ip6tables -A INPUT -p tcp --dport 443 -j ACCEPT
-
 iptables -P INPUT DROP
-ip6tables -P INPUT DROP
+iptables -P FORWARD DROP
 ```
 
-Persistent IPTables (v4/v6):
+Additional rules to allow traffic IP/Ports:
+```
+iptables -A INPUT -s 192.168.0.0/24 -j ACCEPT
+iptables -D INPUT -s 192.168.0.0/24 -j ACCEPT
+
+iptables -A INPUT -p tcp --dport 3306 -s 188.78.107.149 -j ACCEPT
+iptables -D INPUT -p tcp --dport 3306 -s 188.78.107.149 -j ACCEPT
+```
+
+#### IPTables Persistent (v4/v6)
+```
+apt-get install -y iptables-persistent
+```
+
+Clear all IPTables rules to defaults:
+
+`vi /etc/iptables/rules.v4`
+```
+*filter
+:INPUT ACCEPT [0:0]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+COMMIT
+```
+
+`vi /etc/iptables/rules.v6`
+```
+*filter
+:INPUT ACCEPT [0:0]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+COMMIT
+```
+
+Save IPTables configuration (persistent):
 ```
 iptables-save > /etc/iptables/rules.v4
 ip6tables-save > /etc/iptables/rules.v6
 ```
 
-IPTables (v4/v6) status:
+Common rules for firewall server security:
+
+`vi /etc/iptables/rules.v4`
 ```
-iptables -L -v -n
-iptables -L
-ip6tables -L -v -n
-ip6tables -L
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+-A INPUT -m state --state INVALID -j DROP
+-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -i lo -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 22 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 443 -j ACCEPT
+COMMIT
 ```
 
-Open a port to one or more specific IP address (create / delete rule):
+`vi /etc/iptables/rules.v6`
 ```
-iptables -A INPUT -p tcp --dport 3306 -s 188.78.107.149 -j ACCEPT
-iptables -D INPUT -p tcp --dport 3306 -s 188.78.107.149 -j ACCEPT
+*filter
+:INPUT ACCEPT [0:0]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+COMMIT
 ```
