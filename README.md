@@ -77,7 +77,7 @@ hostnamectl
 
 #### SSH Certificate
 ```
-ssh-keygen -t rsa -b 4096 -C "jalopezsuarez@gmail.com"
+ssh-keygen -t rsa -b 4096 -C "correo@servidor.com"
 secure_rsa_jalopezsuarez_private.key
 secure_rsa_jalopezsuarez_server.pub
 ```
