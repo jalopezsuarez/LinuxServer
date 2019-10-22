@@ -608,3 +608,9 @@ COMMIT
 :OUTPUT ACCEPT [0:0]
 COMMIT
 ```
+
+### Service Accounts
+
+```
+useradd -m -d /server/apache/htdocs service
+```
