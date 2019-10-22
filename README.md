@@ -614,3 +614,11 @@ COMMIT
 ```
 useradd -m -d /server/apache/htdocs service
 ```
+```
+ssh-keygen -t rsa -b 4096 -C "correo@servidor.com"
+mv id_rsa secure_rsa_service_private.key
+mv id_rsa.pub secure_rsa_service_server.pub
+```
+```
+cat secure_rsa_service_server.pub >> /server/apache/htdocs/.ssh/authorized_keys
+```
